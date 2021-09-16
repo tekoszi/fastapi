@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+ web:
+  build: .
+  command: uvicorn main:app --host 0.0.0.0
+  volumes:
+   - .:/app
+  ports:
+   - 8000:8000
+ mongodb:
+  image : mongo
+  container_name: mongodb
+  volumes:
+   - ~/mongo/data:/data/db
+  ports:
+   - 27017:27017
+  restart: unless-stopped
